@@ -16,13 +16,23 @@ public:
       return squares;
     }
 
-    vector<int> sortedSquares(vector<int>& nums) {
+    vector<int> sortedSquares_hash(vector<int>& nums) {
       vector<int> nums_hash(10001);
       for (const int e : nums) ++nums_hash[abs(e)];
 
       vector<int> squares;
+      squares.reserve(nums.size());
       for (size_t i = 0; i < nums_hash.size(); ++i) {
         if (nums_hash[i]) squares.insert(squares.end(), nums_hash[i], i * i);
+      }
+      return squares;
+    }
+
+    vector<int> sortedSquares(vector<int>& nums) {
+      const int N = nums.size();
+      vector<int> squares(N);
+      for (int begin = 0, end = N - 1, i = N - 1, e = 0; begin <= end; squares[i] = e * e, --i) {
+        e = (abs(nums[begin]) >= abs(nums[end])) ? nums[begin++] : nums[end--];
       }
       return squares;
     }
