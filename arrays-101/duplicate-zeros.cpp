@@ -25,13 +25,13 @@ public:
     }
 
     void duplicateZeros(vector<int>& arr) {
-      const int N = arr.size();
-      int first_edit_pos = -1, zero_count = 0;
+      int N = arr.size();
+      int zero_count = 0;
       for (int i = 0; i + zero_count < N; ++i) {
-        if (!arr[i]) { ++zero_count; if (first_edit_pos == -1) first_edit_pos = i; }
+        if (!arr[i]) { if (i + zero_count == N - 1) arr[N-- - 1] = 0; else ++zero_count; }
       }
 
-      for (int j = N - 1, i = j - zero_count; i >= first_edit_pos; --i, --j) {
+      for (int j = N - 1, i = j - zero_count; i < j; --i, --j) {
         arr[j] = arr[i];
         if (!arr[i]) arr[--j] = 0;
       }
