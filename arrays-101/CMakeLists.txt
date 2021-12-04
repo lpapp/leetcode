@@ -15,3 +15,5 @@ add_executable(merge-sorted-array inserting/merge-sorted-array.cpp)
 
 add_executable(remove-element deleting/remove-element.cpp)
 add_executable(remove-duplicates-from-sorted-array deleting/remove-duplicates-from-sorted-array.cpp)
+
+add_executable(check-if-exist searching/check-if-exist.cpp)
