@@ -6,9 +6,8 @@ using namespace std;
 class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
-      const int N = nums.size();
       int k = 0;
-      for (int i = 0; i < N; ++i) if (nums[i] != val) nums[k++] = nums[i];
+      for (size_t i = 0; i < nums.size(); ++i) if (nums[i] != val) nums[k++] = nums[i];
       return k;
     }
 };
