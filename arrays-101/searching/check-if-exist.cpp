@@ -23,6 +23,21 @@ public:
       }
       return false;
     }
+
+
+
+    bool checkIfExist(vector<int>& arr) {
+      sort(arr.begin(), arr.end());
+      const int N = arr.size();
+      for (int i = 0; i < N; ++i) {
+        for (int left = 0, right = N - 1, mid = (left + right) / 2; left <= right; mid = (left + right) / 2) {
+          if (arr[i] * 2 == arr[mid] and mid != i) return true;
+          else if (arr[i] * 2 < arr[mid]) right = mid - 1;
+          else left = mid + 1;
+        }
+      }
+      return false;
+    }
 };
 
 int main()
@@ -37,6 +52,18 @@ int main()
 
   vector<int> A3{3, 1, 7, 11};
   cout << "[3,1,7,11] => false: " << s.checkIfExist(A3) << endl;
+
+  vector<int> A4{-20, 8, -6, -14, 0, -19, 14, 4};
+  cout << "[-20,8,-6,-14,0,-19,14,4] => true: " << s.checkIfExist(A4) << endl;
+
+  vector<int> A5{-2, 0, 10, -19, 4, 6, -8};
+  cout << "[-2,0,10,-19,4,6,-8] => false: " << s.checkIfExist(A5) << endl;
+
+  vector<int> A6{-19, -8, -2, 0, 0, 6, 10};
+  cout << "[-19, -8, -2, 0, 0, 6, 10] => true: " << s.checkIfExist(A6) << endl;
+
+  vector<int> A7{-19, -8, 0, 0, 4, 6, 10};
+  cout << "[-19, -8, 0, 0, 4, 6, 10] => true: " << s.checkIfExist(A7) << endl;
 
   return 0;
 }
