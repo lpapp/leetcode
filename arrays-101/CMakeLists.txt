@@ -7,3 +7,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options(-Wall -Wextra -pedantic -Werror -g)
 
 add_executable(merge-sorted-array merge-sorted-array.cpp)
+add_executable(remove-element remove-element.cpp)
