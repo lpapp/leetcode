@@ -20,3 +20,4 @@ add_executable(check-if-exist searching/check-if-exist.cpp)
 add_executable(valid-mountain-array searching/valid-mountain-array.cpp)
 
 add_executable(replace-elements in-place/replace-elements.cpp)
+add_executable(remove-duplicates in-place/remove-duplicates.cpp)
