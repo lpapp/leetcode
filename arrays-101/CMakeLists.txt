@@ -21,3 +21,4 @@ add_executable(valid-mountain-array searching/valid-mountain-array.cpp)
 
 add_executable(replace-elements in-place/replace-elements.cpp)
 add_executable(remove-duplicates in-place/remove-duplicates.cpp)
+add_executable(move-zeroes in-place/move-zeroes.cpp)
