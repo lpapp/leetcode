@@ -27,3 +27,4 @@ add_executable(remove-element-in-place in-place/remove-element.cpp)
 
 add_executable(height-checker conclusion/height-checker.cpp)
 add_executable(third-maximum-number conclusion/third-maximum-number.cpp)
+add_executable(find-disappeared-numbers conclusion/find-disappeared-numbers.cpp)
