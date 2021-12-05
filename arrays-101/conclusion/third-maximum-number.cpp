@@ -1,5 +1,5 @@
 #include <iostream>
-#include <unordered_set>
+#include <set>
 #include <vector>
 
 using namespace std;
@@ -7,17 +7,13 @@ using namespace std;
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-      int distinct_max = nums[0];
-      unordered_set<int> nums_hash{distinct_max};
-      for (size_t i = 1, counter = 1; i < nums.size(); ++i) {
-        if (!nums_hash.count(nums[i])) {
-          nums_hash.insert(nums[i]);
-          if (++counter == 3) return nums[i];
-          else distinct_max = max(distinct_max, nums[i]);
-         }
+      set<int> maxes;
+      for (const int e : nums) {
+        maxes.insert(e);
+        if (maxes.size() == 4) maxes.erase(maxes.begin());
       };
 
-      return distinct_max;
+      return (maxes.size() < 3) ? *maxes.rbegin() : *maxes.begin();
     }
 };
 
