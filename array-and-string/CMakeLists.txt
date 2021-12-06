@@ -15,3 +15,4 @@ add_executable(spiral-matrix introduction-to-2D-array/spiral-matrix.cpp)
 add_executable(pascals-triangle introduction-to-2D-array/pascals-triangle.cpp)
 
 add_executable(add-binary introduction-to-string/add-binary.cpp)
+add_executable(strstr introduction-to-string/strstr.cpp)
