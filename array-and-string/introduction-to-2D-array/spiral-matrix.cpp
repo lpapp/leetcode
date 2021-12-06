@@ -8,7 +8,7 @@ public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
       const size_t rows = matrix.size(), columns = matrix[0].size();
       vector<int> diagonalOrder; diagonalOrder.reserve(rows * columns);
-      for (size_t row = 0, column = 0, direction = 0, i = 0, left = 0, right = columns - 1, top = 0, bottom = rows - 1; i < rows * columns; ++i) {
+      for (int row = 0, column = 0, direction = 0, left = 0, right = columns - 1, top = 0, bottom = rows - 1; left <= right and top <= bottom;) {
         diagonalOrder.push_back(matrix[row][column]);
         if (!direction) { if (column == right) { ++row; ++direction; ++top; } else ++column; }
         else if (direction == 1) { if (row == bottom) { --column; ++direction; --right; } else ++row; }
