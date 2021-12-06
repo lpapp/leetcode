@@ -12,3 +12,4 @@ add_executable(plus-one introduction-to-array/plus-one.cpp)
 
 add_executable(diagonal-traverse introduction-to-2D-array/diagonal-traverse.cpp)
 add_executable(spiral-matrix introduction-to-2D-array/spiral-matrix.cpp)
+add_executable(pascals-triangle introduction-to-2D-array/pascals-triangle.cpp)
