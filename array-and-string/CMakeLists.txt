@@ -11,3 +11,4 @@ add_executable(largest-number-at-least-twice introduction-to-array/largest-numbe
 add_executable(plus-one introduction-to-array/plus-one.cpp)
 
 add_executable(diagonal-traverse introduction-to-2D-array/diagonal-traverse.cpp)
+add_executable(spiral-matrix introduction-to-2D-array/spiral-matrix.cpp)
