@@ -6,6 +6,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_compile_options(-Wall -Wextra -pedantic -Werror -g)
 
-add_subdirectory(array-and-string)
-add_subdirectory(linked-list)
-add_subdirectory(misc)
+add_executable(1991-middle-index-in-array 1991-middle-index-in-array.cpp)
