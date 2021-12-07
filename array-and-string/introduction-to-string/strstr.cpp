@@ -24,7 +24,7 @@ public:
         // cout << " === NEW ITERATION === " << endl;
         // cout << "NEEDLE[K=" << k << "]: " << needle[k] << endl;
         // cout << "NEEDLE[Q=" << q << "]: " << needle[q] << endl;
-        while (k > 1 and needle[k] != needle[q]) k = kmp_precompute[k];
+        while (k > 1 and needle[k] != needle[q]) k = kmp_precompute[k - 1];
         if (needle[k] == needle[q]) ++k;
         kmp_precompute.push_back(k);
         // cout << "MODIFIED K: " << k << endl;
@@ -91,6 +91,12 @@ int main()
 
   string H12 = "mississippi", N12 = "issipi";
   cout << "mississippi | issipi => -1: " << s.strStr(H12, N12) << endl;
+
+  string H13 = "abaaabbabbaabaababaababbabababaababbbababbaababbabbbbaababaaaaabababbbaaaabbbaabaaababbaabaaabaaaaaaaaaaababaaaaabbbaabaaaaabaabbabbaabbbbababbaabbabbabbabababaabbbbaaaaaaabbabaababbbaab", N13 = "bbbbbaaabaaaabaaabbaabbaabbabaaabbbbabbbb";
+  cout << "abaaabbabbaabaababaababbabababaababbbababbaababbabbbbaababaaaaabababbbaaaabbbaabaaababbaabaaabaaaaaaaaaaababaaaaabbbaabaaaaabaabbabbaabbbbababbaabbabbabbabababaabbbbaaaaaaabbabaababbbaab | bbbbbaaabaaaabaaabbaabbaabbabaaabbbbabbbb => -1: " << s.strStr(H13, N13) << endl;
+
+  string H14 = "bbababaaaababbaabbbabbbaaabbbaaababbabaabbaaaaabbaaabbbbaaabaabbaababbbaabaaababbaaabbbbbbaabbbbbaaabbababaaaaabaabbbababbaababaabbaa", N14 = "bbabba";
+  cout << "bbababaaaababbaabbbabbbaaabbbaaababbabaabbaaaaabbaaabbbbaaabaabbaababbbaabaaababbaaabbbbbbaabbbbbaaabbababaaaaabaabbbababbaababaabbaa | bbabba => -1: " << s.strStr(H14, N14) << endl;
 
   return 0;
 }
