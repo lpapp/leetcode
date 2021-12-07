@@ -18,8 +18,8 @@ public:
     vector<int> kmp_precompute_prefix(string needle)
     {
       const size_t M = needle.size();
-      vector<int> kmp_precompute;
-      kmp_precompute.reserve(M); kmp_precompute.push_back(0);
+      vector<int> kmp_precompute(1, 0);
+      kmp_precompute.reserve(M);
       for (size_t k = 0, q = 1; q < M; ++q) {
         while (k and needle[k + 1] != needle[q]) k = kmp_precompute[k];
         if (needle[k] == needle[q]) ++k;
