@@ -17,3 +17,5 @@ add_executable(pascals-triangle introduction-to-2D-array/pascals-triangle.cpp)
 add_executable(add-binary introduction-to-string/add-binary.cpp)
 add_executable(strstr introduction-to-string/strstr.cpp)
 add_executable(longest-common-prefix introduction-to-string/longest-common-prefix.cpp)
+
+add_executable(reverse-string two-pointer-technique/reverse-string.cpp)
