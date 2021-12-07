@@ -18,7 +18,7 @@ public:
     vector<int> kmp_precompute_prefix(string needle)
     {
       const size_t M = needle.size();
-      vector<int> kmp_precompute(1, 0);
+      vector<int> kmp_precompute({0});
       kmp_precompute.reserve(M);
       for (size_t k = 0, q = 1; q < M; ++q) {
         // cout << " === NEW ITERATION === " << endl;
