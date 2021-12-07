@@ -21,13 +21,9 @@ public:
       vector<int> kmp_precompute({0});
       kmp_precompute.reserve(M);
       for (size_t k = 0, q = 1; q < M; ++q) {
-        // cout << " === NEW ITERATION === " << endl;
-        // cout << "NEEDLE[K=" << k << "]: " << needle[k] << endl;
-        // cout << "NEEDLE[Q=" << q << "]: " << needle[q] << endl;
-        while (k > 1 and needle[k] != needle[q]) k = kmp_precompute[k - 1];
+        while (k and needle[k] != needle[q]) k = kmp_precompute[k - 1];
         if (needle[k] == needle[q]) ++k;
         kmp_precompute.push_back(k);
-        // cout << "MODIFIED K: " << k << endl;
       }
       return kmp_precompute;
     }
@@ -38,13 +34,7 @@ public:
       if (M > N) return -1;
       vector<int> kmp_precompute = kmp_precompute_prefix(needle);
       for (size_t i = 0, q = 0; i < N; ++i) {
-        // cout << "HAYSTACK[I=" << i << "]: " << haystack[i] << endl;
-        // cout << "NEEDLE[Q=" << q << "]: " << needle[q] << endl;
-        while (q and needle[q] != haystack[i]) {
-          // cout << "NOT EQUAL Q 1: " << q << endl;
-          q = kmp_precompute[q - 1];
-          // cout << "NOT EQUAL Q 2: " << q << endl;
-        }
+        while (q and needle[q] != haystack[i]) q = kmp_precompute[q - 1];
         if (needle[q] == haystack[i]) ++q;
         if (q == M) return i + 1 - M;
       }
