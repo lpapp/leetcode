@@ -24,9 +24,10 @@ public:
         // cout << " === NEW ITERATION === " << endl;
         // cout << "NEEDLE[K=" << k << "]: " << needle[k] << endl;
         // cout << "NEEDLE[Q=" << q << "]: " << needle[q] << endl;
-        while (k and needle[k + 1] != needle[q]) k = kmp_precompute[k];
-        if (needle[k + 1] == needle[q]) ++k;
+        while (k > 1 and needle[k] != needle[q]) k = kmp_precompute[k];
+        if (needle[k] == needle[q]) ++k;
         kmp_precompute.push_back(k);
+        // cout << "MODIFIED K: " << k << endl;
       }
       return kmp_precompute;
     }
