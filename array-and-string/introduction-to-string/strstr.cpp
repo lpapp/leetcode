@@ -1,14 +1,41 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Solution {
 public:
-    int strStr(string haystack, string needle) {
+    int strStr_bruteforce(string haystack, string needle) {
       for (int i = 0, j = 0, H = haystack.size(), N = needle.size(); i < H - N + 1; ++i) {
         for (j = 0; j < N and needle[j] == haystack[i + j]; ++j);
         if (j == N) return i;
+      }
+      return -1;
+    }
+
+    // KMP string matching, CLRS Chapter 32.4
+    vector<int> kmp_precompute_prefix(string needle)
+    {
+      const size_t M = needle.size();
+      vector<int> kmp_precompute;
+      kmp_precompute.reserve(M); kmp_precompute[0] = 0;
+      for (size_t k = 0, q = 1; q < M; ++q) {
+        while (k and needle[k + 1] != needle[q]) k = kmp_precompute[k];
+        if (needle[k] == needle[q]) ++k;
+        kmp_precompute.push_back(k);
+      }
+      return kmp_precompute;
+    }
+
+    int strStr(string haystack, string needle) {
+      if (needle.empty()) return 0;
+      const size_t N = haystack.size(), M = needle.size();
+      vector<int> kmp_precompute = kmp_precompute_prefix(needle);
+      for (size_t i = 0, q = 0; i < N; ++i) {
+        while (q and needle[q] != haystack[i]) q = kmp_precompute[q];
+        if (needle[q] == haystack[i]) ++q;
+        if (q == M) return i + 1 - M;
       }
       return -1;
     }
@@ -32,6 +59,18 @@ int main()
 
   string H5 = "a", N5 = "a";
   cout << "a | a => 0: " << s.strStr(H5, N5) << endl;
+
+  string H6 = "hello world", N6 = "hello";
+  cout << "hello world | hello => 0: " << s.strStr(H6, N6) << endl;
+
+  string H7 = "hello world", N7 = "world";
+  cout << "hello world | world => 6: " << s.strStr(H7, N7) << endl;
+
+  string H8 = "a", N8 = "";
+  cout << "a | '' => 0: " << s.strStr(H8, N8) << endl;
+
+  string H9 = "mississippi", N9 = "issip";
+  cout << "mississippi | issip => 4: " << s.strStr(H9, N9) << endl;
 
   return 0;
 }
