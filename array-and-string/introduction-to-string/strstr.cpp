@@ -21,7 +21,7 @@ public:
       vector<int> kmp_precompute(1, 0);
       kmp_precompute.reserve(M);
       for (size_t k = 0, q = 1; q < M; ++q) {
-        while (k and needle[k + 1] != needle[q]) k = kmp_precompute[k];
+        while (k and needle[k + 1] != needle[q]) k = kmp_precompute[k - 1];
         if (needle[k] == needle[q]) ++k;
         kmp_precompute.push_back(k);
       }
@@ -31,9 +31,10 @@ public:
     int strStr(string haystack, string needle) {
       if (needle.empty()) return 0;
       const size_t N = haystack.size(), M = needle.size();
+      if (M > N) return -1;
       vector<int> kmp_precompute = kmp_precompute_prefix(needle);
       for (size_t i = 0, q = 0; i < N; ++i) {
-        while (q and needle[q] != haystack[i]) q = kmp_precompute[q];
+        while (q and needle[q] != haystack[i]) q = kmp_precompute[q - 1];
         if (needle[q] == haystack[i]) ++q;
         if (q == M) return i + 1 - M;
       }
@@ -71,6 +72,12 @@ int main()
 
   string H9 = "mississippi", N9 = "issip";
   cout << "mississippi | issip => 4: " << s.strStr(H9, N9) << endl;
+
+  string H10 = "aaa", N10 = "aabab";
+  cout << "aaa | aabab => -1: " << s.strStr(H10, N10) << endl;
+
+  string H11 = "aabaaabaaac", N11 = "aabaaac";
+  cout << "aabaaabaaac | aabaaac => 4: " << s.strStr(H11, N11) << endl;
 
   return 0;
 }
