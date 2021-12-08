@@ -26,10 +26,43 @@ public:
       }
     }
 
-    void rotate(vector<int>& nums, int k) {
+    void rotate_reverse(vector<int>& nums, int k) {
       reverse(nums.begin(), nums.end());
       reverse(nums.begin(), nums.begin() + k % nums.size());
       reverse(nums.begin() + k % nums.size(), nums.end());
+    }
+
+    void rotate_swap_first_last(vector<int>& nums, int k) {
+      for (int N = nums.size(), steps = k % N, offset = 0; steps; N -= steps, offset += steps, steps %= N) {
+        for (int i = 0; i < steps; ++i) swap(nums[offset + i], nums[nums.size() - steps + i]);
+      }
+    }
+
+    // E.g.
+    //  1 2 3 4 5 6 7
+    //  k = 5
+    //  1 2 -> 3 4
+    //  3 4 1 2 5 6 7
+    //  --------------
+    //  1 2 3 4 5 6 7
+    //  k = 2
+    //  4 5 -> 6 7
+    //  1 2 3 6 7 4 5
+
+    void rotate(vector<int>& nums, int k) {
+      for (int offset = 0, N = nums.size(), steps = k % N; steps;) {
+        if (N - steps >= steps) {
+          for (int i = 0; i < steps; ++i) swap(nums[offset + N - 2 * steps + i], nums[offset + N - steps + i]);
+          N -= steps;
+          steps %= N;
+        } else {
+          for (int i = 0; i < N - steps; ++i) swap(nums[offset + i], nums[offset + N - steps + i]);
+          int tmp = N - steps;
+          N = steps;
+          steps -= tmp;
+          offset += tmp;
+        }
+      }
     }
 };
 
@@ -40,7 +73,7 @@ void test(vector<int>& nums, int k)
 
   cout << "[";
   for (const int e : nums) cout << e << ",";
-  cout << "]" << endl; 
+  cout << "]" << endl;
 }
 
 int main()
