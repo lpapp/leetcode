@@ -6,11 +6,21 @@ using namespace std;
 class Solution {
 public:
     // Caterpillar method, which is a two pointer technique after all.
-    int minSubArrayLen(int target, vector<int>& nums) {
+    int minSubArrayLen_caterpillar(int target, vector<int>& nums) {
       int min_size = 100001, N = nums.size();
       for (int back = 0, front = 0, sum = 0; back < N; sum -= nums[back], ++back) {
         while (front < N and sum < target) sum += nums[front++];
         if (sum >= target) min_size = min(min_size, front - back);
+      }
+      return min_size == 100001 ? 0 : min_size;
+    }
+
+    // Another way to implement caterpillar with the two pointer technique.
+    int minSubArrayLen(int target, vector<int>& nums) {
+      int min_size = 100001, N = nums.size();
+      for (int back = 0, front = 0, sum = 0; front < N;) {
+        sum += nums[front++];
+        while (sum >= target) { min_size = min(min_size, front - back); sum -= nums[back++]; }
       }
       return min_size == 100001 ? 0 : min_size;
     }
