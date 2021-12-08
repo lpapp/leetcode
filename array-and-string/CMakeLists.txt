@@ -20,3 +20,4 @@ add_executable(longest-common-prefix introduction-to-string/longest-common-prefi
 
 add_executable(reverse-string two-pointer-technique/reverse-string.cpp)
 add_executable(array-partition-one two-pointer-technique/array-partition-one.cpp)
+add_executable(two-sum-two two-pointer-technique/two-sum-two.cpp)
