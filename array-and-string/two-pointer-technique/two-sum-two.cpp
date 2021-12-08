@@ -24,8 +24,8 @@ public:
         vector<int>& indices = numbers_hash[numbers[i] + 1000];
         if (indices.size() < 2) indices.push_back(i + 1);
       }
-
       for (int i = 0; i < N; ++i) {
+        if (target - numbers[i] < -1000 or target - numbers[i] > 1000) continue;
         const vector<int>& indices = numbers_hash[target - numbers[i] + 1000];
         if (!indices.empty()) {
           if (indices[0] != i + 1) return vector<int>{i + 1, indices[0]};
@@ -42,7 +42,6 @@ public:
         vector<int>& indices = numbers_hash[numbers[i]];
         if (indices.size() < 2) indices.push_back(i + 1);
       }
-
       for (int i = 0; i < N; ++i) {
         const vector<int>& indices = numbers_hash[target - numbers[i]];
         if (!indices.empty()) {
@@ -84,6 +83,10 @@ int main()
   vector<int> A5{-1000, -1, 0, 1};
   cout << "[-1000,-1,0,1] | 1 => [3,4]: ";
   test(A5, 1);
+
+  vector<int> A6{-1000, 0, 1000};
+  cout << "[-1000,0,1000] | 0 => [1,3]: ";
+  test(A6, 0);
 
   return 0;
 }
