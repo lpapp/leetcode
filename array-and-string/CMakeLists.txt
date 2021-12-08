@@ -22,3 +22,6 @@ add_executable(two-sum-two two-pointer-technique/two-sum-two.cpp)
 add_executable(remove-element-two-pointer-technique two-pointer-technique/remove-element.cpp)
 add_executable(max-consecutive-ones-two-pointer-technique two-pointer-technique/max-consecutive-ones.cpp)
 add_executable(minimum-size-subarray-sum two-pointer-technique/minimum-size-subarray-sum.cpp)
+
+add_executable(rotate-array conclusion/rotate-array.cpp)
+add_executable(pascals-triangle-two conclusion/pascals-triangle-two.cpp)
