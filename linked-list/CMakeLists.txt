@@ -5,3 +5,5 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(design-linked-list singly-linked-list/design-linked-list.cpp)
+add_executable(linked-list-cycle two-pointer-technique/linked-list-cycle.cpp)
+add_executable(linked-list-cycle-two two-pointer-technique/linked-list-cycle-two.cpp)

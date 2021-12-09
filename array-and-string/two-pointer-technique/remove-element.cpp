@@ -14,8 +14,8 @@ public:
     int removeElement(vector<int>& nums, int val) {
       int N = nums.size();
       for (int i = 0; i < N;) {
-         if (nums[i] != val) ++i;
-         else nums[i] = nums[N-- - 1];
+        if (nums[i] != val) ++i;
+        else nums[i] = nums[N-- - 1];
       }
       return N;
     }
