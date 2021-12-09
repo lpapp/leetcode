@@ -25,3 +25,4 @@ add_executable(minimum-size-subarray-sum two-pointer-technique/minimum-size-suba
 
 add_executable(rotate-array conclusion/rotate-array.cpp)
 add_executable(pascals-triangle-two conclusion/pascals-triangle-two.cpp)
+add_executable(reverse-words-in-a-string conclusion/reverse-words-in-a-string.cpp)
