@@ -23,11 +23,11 @@ struct ListNode {
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-      ListNode* ahead = head, *beyond = head, *prev = nullptr;
-      for (int i = 0; i < n and ahead; ++i, ahead = ahead->next);
+      ListNode* ahead = head, *beyond = head;
+      for (int i = 0; i < n; ++i, ahead = ahead->next);
       if (!ahead) return head->next;
-      for (; ahead; ahead = ahead->next, prev = beyond, beyond = beyond->next);
-      prev->next = beyond->next;
+      for (; ahead->next; ahead = ahead->next, beyond = beyond->next);
+      beyond->next = beyond->next->next;
       return head;
     }
 };
