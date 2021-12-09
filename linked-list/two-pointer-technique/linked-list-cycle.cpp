@@ -35,7 +35,7 @@ int main()
   head->next = new ListNode(2);
   head->next->next = new ListNode(0);
   head->next->next->next = new ListNode(-4);
-  head->next->next->next = head->next;
+  head->next->next->next->next = head->next;
   cout << "head = [3,2,0,-4], pos = 1 => true: " << s.hasCycle(head) << endl;
 
   ListNode* head2 = new ListNode(1);
