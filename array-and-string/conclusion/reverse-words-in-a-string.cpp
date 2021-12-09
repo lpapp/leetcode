@@ -5,24 +5,70 @@ using namespace std;
 
 class Solution {
 public:
-    string reverseWords(string s) {
+    string reverseWords_inefficient(string s) {
       string reversed;
-      int N = s.size(), word_end = N - 1;
-      for (int i = N - 1; i >= 0;) {
+      const int N = s.size();
+      for (int i = N - 1, word_end = i, space_start; i >= 0;) {
         if (s[i] == ' ') {
-          int ti = i;
-          while (i >= 0 and s[i] == ' ') --i;
+          for (space_start = i; i < N and s[i] == ' '; --i);
           if (i < 0) break;
-          if (ti != N - 1) reversed.push_back(' ');
+          if (space_start) reversed.push_back(' ');
         }
 
-        word_end = i;
-        while (i >= 0 and s[i] != ' ') --i;
+        for (word_end = i; i >= 0 and s[i] != ' '; --i);
         for (int k = i + 1; k <= word_end; ++k) reversed.push_back(s[k]);
-        if (i < 0) break;
       }
       return reversed;
     }
+
+   /* string reverseWords(string s) {
+     cout << endl;
+     reverse(s.begin(), s.end());
+     // cout << "REVERSED ORIGINAL STRING: " << s << endl;
+     int write = 0;
+     for (size_t N = s.size(), i = 0, word_start = 0, space_start; i < N; ++i) {
+       if (s[i] == ' ') {
+         for (space_start = i; i < N and s[i] == ' '; ++i);
+         if (i == N) break;
+         if (space_start) s[write++] = ' ';
+       }
+
+       for (word_start = i; i < N and s[i] != ' '; ++i);
+       // cout << "WORD: " << s.substr(word_start, i - 1);
+       // cout << "WORD START: " << word_start << endl;
+       // cout << "WORD END: " << i - 1 << endl;
+       // cout << "WRITE: " << write << endl;
+       for (int we = i - 1; write < word_start; ++j, --we) s[write++] = s[we];
+       for (int ws = word_start, we = i - 1, offset = word_start - write; ws < we; ++ws, --we, write += 2) {
+         s[write] = s[we];
+         s[we - offset] = s[ws];
+       }
+     }
+
+     // cout << "STRING SIZE: " << s.size() << endl;
+     // cout << "STIRNG NEW SIZE: " << write << endl;
+     return s.substr(0, write);
+   } */
+
+   string reverseWords(string s) {
+     int N = s.size(), read, write, space_start;
+     for (read = 0, write = 0; read < N;) {
+       if (s[read] == ' ') {
+         for (space_start = read; read < N and s[read] == ' '; ++read);
+         if (read == N) break;
+         if (space_start) s[write++] = ' ';
+       }
+       while (read < N and s[read] != ' ') s[write++] = s[read++];
+     }
+     reverse(s.begin(), s.begin() + write);
+     for (int i = 0, world_start; i < write; ++i) {
+       if (s[i] != ' ') {
+         for (world_start = i; i < write and s[i] != ' '; ++i);
+         reverse(s.begin() + world_start, s.begin() + i);
+       }
+     }
+     return s.substr(0, write);
+   }
 };
 
 int main()
