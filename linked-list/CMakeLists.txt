@@ -9,3 +9,5 @@ add_executable(linked-list-cycle two-pointer-technique/linked-list-cycle.cpp)
 add_executable(linked-list-cycle-two two-pointer-technique/linked-list-cycle-two.cpp)
 add_executable(intersection-of-two-linked-lists two-pointer-technique/intersection-of-two-linked-lists.cpp)
 add_executable(remove-nth-node-from-end-of-list two-pointer-technique/remove-nth-node-from-end-of-list.cpp)
+
+add_executable(reverse-linked-list classic-problems/reverse-linked-list.cpp)

@@ -39,7 +39,6 @@ void test(ListNode* head, int n)
   cout << "[";
   for (ListNode* h = s.removeNthFromEnd(head, n); h; h = h->next) cout << h->val << ",";
   cout << "]" << endl;
-  
 }
 
 int main()
