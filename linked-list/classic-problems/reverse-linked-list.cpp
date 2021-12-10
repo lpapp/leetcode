@@ -33,6 +33,22 @@ public:
   }
 
 /*
+  -> 1-2-3-4-5 -> 1->nullptr
+  -> 2-3-4-5   -> 2->1
+  -> 3-4-5     -> 3->2
+  ...
+ */
+  ListNode* reverseList_iterative_two(ListNode* head) {
+    ListNode* new_head, *next;
+    for (new_head = nullptr; head; head = next) {
+      next = head->next;
+      head->next = new_head;
+      new_head = head;
+    }
+    return new_head;
+  }
+
+/*
   1 2 3 4 5 ->
   head: 1 ->
     head: 2 ->
