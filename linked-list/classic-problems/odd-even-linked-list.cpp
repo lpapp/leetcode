@@ -24,7 +24,7 @@ class Solution {
 public:
     // -> 1, 2, 3, 4, 5 -> write_node: 1, read_node: 2
     // -> 1, 3, 2, 4, 5 -> write_node: 3, read_node: 4
-    ListNode* oddEvenList(ListNode* head) {
+    ListNode* oddEvenList_original(ListNode* head) {
       if (!head) return head;
       for (ListNode* write_node = head, *read_node = head->next; read_node and read_node->next; write_node = write_node->next, read_node = read_node->next) {
         ListNode* odd_node = read_node->next;
@@ -32,6 +32,14 @@ public:
         odd_node->next = write_node->next;
         write_node->next = odd_node;
       }
+      return head;
+    }
+
+    ListNode* oddEvenList(ListNode* head) {
+      if (!head) return head;
+      ListNode* odd = head, *evenHead = head->next;
+      for (ListNode* even = head->next; even and even->next; odd = odd->next, even->next = odd->next, even = even->next) odd->next = even->next;
+      odd->next = evenHead;
       return head;
     }
 };
