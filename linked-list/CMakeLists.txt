@@ -12,3 +12,4 @@ add_executable(remove-nth-node-from-end-of-list two-pointer-technique/remove-nth
 
 add_executable(reverse-linked-list classic-problems/reverse-linked-list.cpp)
 add_executable(remove-linked-list-elements classic-problems/remove-linked-list-elements.cpp)
+add_executable(odd-even-linked-list classic-problems/odd-even-linked-list.cpp)
