@@ -29,13 +29,11 @@ public:
           if (!merged) { merged = list2; merged_head = merged; }
           else merged->next = list2;
           break;
-        }
-        else if (!list2) {
+        } else if (!list2) {
           if (!merged) { merged = list1; merged_head = merged; }
           else merged->next = list1;
           break;
-        }
-        else { 
+        } else { 
           if (list1->val < list2->val) {
             if (!merged) { merged = list1; merged_head = merged; }
             else { merged->next = list1; merged = merged->next; }

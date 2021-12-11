@@ -19,3 +19,4 @@ add_executable(palindrome-linked-list classic-problems/palindrome-linked-list.cp
 add_executable(design-linked-list-doubly doubly-linked-list/design-linked-list.cpp)
 
 add_executable(merge-two-sorted-lists conclusion/merge-two-sorted-lists.cpp)
+add_executable(add-two-numbers conclusion/add-two-numbers.cpp)
