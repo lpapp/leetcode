@@ -24,14 +24,14 @@ public:
 class Solution {
 public:
     Node* flatten(Node* head) {
-      for (Node* node = head, *next, *child_node; node; node = next) {
-        next = node->next;
+      for (Node* node = head, *child_node; node; node = node->next) {
         if (node->child) {
+          for (child_node = node->child; child_node->next; child_node = child_node->next);
+          child_node->next = node->next;
+          if (node->next) node->next->prev = child_node;
           node->next = node->child;
           node->child->prev = node;
-          for (child_node = node->child; child_node->next; child_node = child_node->next);
-          child_node->next = next;
-          next->prev = child_node;
+          node->child = nullptr;
         }
       }
       return head;
@@ -114,6 +114,32 @@ int main()
 
   cout << "head = [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12] => [1,2,3,7,8,11,12,9,10,4,5,6]: ";
   test(list1);
+
+
+  Node* child_list1_1 = new Node;
+  child_list1_1->val = 3;
+  child_list1_1->prev = nullptr;
+  child_list1_1->child = nullptr;
+  child_list1_1->next = nullptr;
+
+  Node* list1_1 = new Node;
+  list1_1->val = 1;
+  list1_1->prev = nullptr;
+  list1_1->child = child_list1_1;
+  list1_1->next = new Node;
+
+  list1_1->next->val = 2;
+  list1_1->next->prev = list1_1;
+  list1_1->next->child = nullptr;
+  list1_1->next->next = nullptr;
+
+  cout << "head = [1,2,null,3] => [1,3,2]: ";
+  test(list1_1); 
+
+
+  Node* list1_2 = nullptr;
+  cout << "head = [] => []: ";
+  test(list1_2); 
 
   return 0;
 }
