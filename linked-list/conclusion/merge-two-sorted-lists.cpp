@@ -23,36 +23,28 @@ struct ListNode {
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-      // cout << "LIST2->VAL BEGIN 1: " << list2->val << endl;
-      // cout << "LIST2->VAL BEGIN 2: " << list2->next->val << endl;
-      // cout << "LIST2->VAL BEGIN 3: " << list2->next->next->val << endl;
       ListNode* merged, *merged_head;
-      for (merged = nullptr, merged_head = merged; list1 or list2; merged = merged->next) {
+      for (merged = nullptr, merged_head = merged; list1 or list2;) {
         if (!list1) {
-          // cout << "LIST1 EMPTY, LIST2->VAL: " << list2->val << endl;
           if (!merged) { merged = list2; merged_head = merged; }
           else merged->next = list2;
-          list2 = list2->next;
+          break;
         }
         else if (!list2) {
-          // cout << "LIST2 EMPTY, LIST1->VAL: " << list1->val << endl;
           if (!merged) { merged = list1; merged_head = merged; }
           else merged->next = list1;
-          list1 = list1->next;
+          break;
         }
         else { 
-          // cout << "LIST1->VAL: " << list1->val << ", LIST2->VAL: " << list2->val << endl;
           if (list1->val < list2->val) {
             if (!merged) { merged = list1; merged_head = merged; }
-            else merged->next = list1;
+            else { merged->next = list1; merged = merged->next; }
             list1 = list1->next;
           }
           else {
-            // cout << "LIST2->VAL: " << list2->val << endl;
             if (!merged) { merged = list2; merged_head = merged; }
-            else merged->next = list2;
+            else { merged->next = list2; merged = merged->next; }
             list2 = list2->next;
-            // cout << "LIST2->VAL 2: " << list2->val << endl;
           }
         }
       }
@@ -96,7 +88,7 @@ int main()
   ListNode* list2_3 = nullptr;
   cout << "[0] | [] => [0]: ";
   test(list1_3, list2_3);
-/*
+
   ListNode* list1_4 = new ListNode(1);
   list1_4->next = new ListNode(2);
   list1_4->next->next = new ListNode(4);
@@ -107,6 +99,6 @@ int main()
   list2_4->next->next->next = new ListNode(5);
   cout << "[1,2,4] | [1,3,4,5] => [1,1,2,3,4,4,5]: ";
   test(list1_4, list2_4);
-*/
+
   return 0;
 }
