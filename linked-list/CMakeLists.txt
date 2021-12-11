@@ -17,3 +17,5 @@ add_executable(odd-even-linked-list classic-problems/odd-even-linked-list.cpp)
 add_executable(palindrome-linked-list classic-problems/palindrome-linked-list.cpp)
 
 add_executable(design-linked-list-doubly doubly-linked-list/design-linked-list.cpp)
+
+add_executable(merge-two-sorted-lists conclusion/merge-two-sorted-lists.cpp)
