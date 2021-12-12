@@ -21,3 +21,4 @@ add_executable(design-linked-list-doubly doubly-linked-list/design-linked-list.c
 add_executable(merge-two-sorted-lists conclusion/merge-two-sorted-lists.cpp)
 add_executable(add-two-numbers conclusion/add-two-numbers.cpp)
 add_executable(flatten-a-multilevel-doubly-linked-list conclusion/flatten-a-multilevel-doubly-linked-list.cpp)
+add_executable(copy-list-with-random-pointer conclusion/copy-list-with-random-pointer.cpp)
