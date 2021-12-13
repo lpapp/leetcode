@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.21)
+project(leetcode LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_executable(binary-tree-preorder-traversal traverse-a-tree/binary-tree-preorder-traversal.cpp)
+add_executable(binary-tree-inorder-traversal traverse-a-tree/binary-tree-inorder-traversal.cpp)
