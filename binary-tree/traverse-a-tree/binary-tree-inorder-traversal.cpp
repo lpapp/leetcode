@@ -29,10 +29,10 @@ public:
     vector<int> inorderTraversal_recursive(TreeNode* root) {
       if (!root) return {};
       vector<int> values;
-      vector<int> left = inorderTraversal(root->left);
+      vector<int> left = inorderTraversal_recursive(root->left);
       values.insert(values.end(), left.cbegin(), left.cend());
       values.push_back(root->val);
-      vector<int> right = inorderTraversal(root->right);
+      vector<int> right = inorderTraversal_recursive(root->right);
       values.insert(values.end(), right.cbegin(), right.cend());
       return values;
     }

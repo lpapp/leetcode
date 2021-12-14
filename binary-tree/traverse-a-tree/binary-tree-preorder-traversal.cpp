@@ -29,9 +29,9 @@ public:
     vector<int> preorderTraversal_recursive(TreeNode* root) {
       if (!root) return {};
       vector<int> values{root->val};
-      vector<int> left = preorderTraversal(root->left);
+      vector<int> left = preorderTraversal_recursive(root->left);
       values.insert(values.end(), left.cbegin(), left.cend());
-      vector<int> right = preorderTraversal(root->right);
+      vector<int> right = preorderTraversal_recursive(root->right);
       values.insert(values.end(), right.cbegin(), right.cend());
       return values;
     }
