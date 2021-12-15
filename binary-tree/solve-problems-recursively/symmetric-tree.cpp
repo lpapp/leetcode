@@ -26,7 +26,7 @@ struct TreeNode {
  */
 class Solution {
 public:
-    bool isSymmetric(TreeNode* root) {
+    bool isSymmetric_iterative(TreeNode* root) {
       vector<TreeNode*> levelNodes;
       if (root) levelNodes.push_back(root);
       while (!levelNodes.empty()) {
@@ -37,12 +37,32 @@ public:
         vector<TreeNode*> parents = levelNodes;
         levelNodes.clear();
         for (TreeNode* parent : parents) {
-          if (!parent) { levelNodes.push_back(nullptr); levelNodes.push_back(nullptr); }
-          else { levelNodes.push_back(parent->left); levelNodes.push_back(parent->right); }
+          if (parent) { levelNodes.push_back(parent->left); levelNodes.push_back(parent->right); }
         }
-        if (std::all_of(levelNodes.cbegin(), levelNodes.cend(), [](TreeNode* node){ return !node; })) break;
       }
       return true;
+    }
+
+    bool isSymmetric_iterative_queue(TreeNode* root) {
+      queue<TreeNode*> q; q.push(root->left); q.push(root->right);
+      while (!q.empty()) {
+          TreeNode* left = q.front(); q.pop();
+          TreeNode* right = q.front(); q.pop();
+          if (!left and !right) continue;
+          if (!left or !right or left->val != right->val) return false;
+          q.push(left->left); q.push(right->right); q.push(left->right); q.push(right->left);
+      }
+      return true;
+    }
+
+    bool isSymmetric_recursive(TreeNode* left, TreeNode* right) {
+      if (!left and !right) return true;
+      if (!left or !right or left->val != right->val) return false;
+      return isSymmetric_recursive(left->left, right->right) and isSymmetric_recursive(left->right, right->left);
+    }
+
+    bool isSymmetric(TreeNode* root) {
+      return isSymmetric_recursive(root->left, root->right);
     }
 };
 
