@@ -52,7 +52,7 @@ public:
       return values;
     }
 
-    vector<vector<int>> levelOrder(TreeNode* root) {
+    vector<vector<int>> levelOrder_iterative(TreeNode* root) {
       vector<vector<int>> values;
       vector<TreeNode*> levelNodes;
       if (root) levelNodes.push_back(root);
@@ -66,6 +66,22 @@ public:
           if (parent->right) levelNodes.push_back(parent->right);
         }
         values.push_back(levelValues);
+      }
+      return values;
+    }
+
+    vector<vector<int>> levelOrder(TreeNode* root) {
+      if (!root) return {};
+      vector<vector<int>> values;
+      queue<TreeNode*> q; q.push(root);
+      for (int vi = 0; !q.empty(); ++vi) {
+        values.push_back({});
+        for (size_t i = 0, qs = q.size(); i < qs; ++i) {
+          TreeNode* node = q.front(); q.pop();
+          values[vi].push_back(node->val);
+          if (node->left) q.push(node->left);
+          if (node->right) q.push(node->right);
+        }
       }
       return values;
     }
