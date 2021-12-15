@@ -37,18 +37,36 @@ public:
       }
     } */
 
-    void levelOrder(TreeNode* root, vector<vector<int>>& values, size_t level)
+    void levelOrder_recursive(TreeNode* root, vector<vector<int>>& values, size_t level)
     {
       if (!root) return;
       if (values.size() == level) values.push_back({root->val});
       else values[level].push_back(root->val);
-      levelOrder(root->left, values, level + 1);
-      levelOrder(root->right, values, level + 1);
+      levelOrder_recursive(root->left, values, level + 1);
+      levelOrder_recursive(root->right, values, level + 1);
+    }
+
+    vector<vector<int>> levelOrder_recursive_base(TreeNode* root) {
+      vector<vector<int>> values;
+      levelOrder_recursive(root, values, 0);
+      return values;
     }
 
     vector<vector<int>> levelOrder(TreeNode* root) {
       vector<vector<int>> values;
-      levelOrder(root, values, 0);
+      vector<TreeNode*> levelNodes;
+      if (root) levelNodes.push_back(root);
+      while (!levelNodes.empty()) {
+        vector<TreeNode*> parents = levelNodes;
+        levelNodes.clear();
+        vector<int> levelValues;
+        for (TreeNode* parent : parents) {
+          levelValues.push_back(parent->val);
+          if (parent->left) levelNodes.push_back(parent->left);
+          if (parent->right) levelNodes.push_back(parent->right);
+        }
+        values.push_back(levelValues);
+      }
       return values;
     }
 };
