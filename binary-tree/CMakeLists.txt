@@ -11,3 +11,6 @@ add_executable(binary-tree-level-order-traversal traverse-a-tree/binary-tree-lev
 
 add_executable(maximum-depth-of-binary-tree solve-problems-recursively/maximum-depth-of-binary-tree.cpp)
 add_executable(symmetric-tree solve-problems-recursively/symmetric-tree.cpp)
+add_executable(path-sum solve-problems-recursively/path-sum.cpp)
+
+add_executable(construct-binary-tree-from-inorder-and-postorder-traversal conclusion/construct-binary-tree-from-inorder-and-postorder-traversal.cpp)
