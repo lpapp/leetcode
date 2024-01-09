@@ -6,11 +6,11 @@ using namespace std;
 class Solution {
 public:
     vector<int> findDiagonalOrder(vector<vector<int>>& mat) {
-      const size_t rows = mat.size(), columns = mat[0].size();                  
-      vector<int> diagonalOrder; diagonalOrder.reserve(rows * columns);         
+      const size_t rows = mat.size(), columns = mat[0].size();
+      vector<int> diagonalOrder; diagonalOrder.reserve(rows * columns);
       for (size_t row = 0, column = 0, upwards = 1; row < rows and column < columns;) {
-        diagonalOrder.push_back(mat[row][column]);                              
-        if (upwards) {                                                          
+        diagonalOrder.push_back(mat[row][column]);
+        if (upwards) {
           if (column == (columns - 1)) { ++row; upwards = 0; }                  
           else if (!row) { ++column; upwards = 0; }                             
           else { --row; ++column; }                                             

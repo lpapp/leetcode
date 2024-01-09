@@ -10,9 +10,13 @@ public:
       vector<int> diagonalOrder; diagonalOrder.reserve(rows * columns);
       for (int row = 0, column = 0, direction = 0, left = 0, right = columns - 1, top = 0, bottom = rows - 1; left <= right and top <= bottom;) {
         diagonalOrder.push_back(matrix[row][column]);
+        // direction == 0, going from left to right
         if (!direction) { if (column == right) { ++row; ++direction; ++top; } else ++column; }
+        // direction == 1, going from top to bottom
         else if (direction == 1) { if (row == bottom) { --column; ++direction; --right; } else ++row; }
+        // direction == 2, going from right to left
         else if (direction == 2) { if (column == left) { --row; ++direction; --bottom; } else --column; }
+        // direction == 3, going from bottom to top
         else { if (row == top) { ++column; direction = 0; ++left; } else --row; }
       }
       return diagonalOrder;

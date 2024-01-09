@@ -9,7 +9,6 @@ public:
       vector<vector<int>> pascals_triangle(numRows, vector<int>{1});
       for (int row = 1; row < numRows; ++row) pascals_triangle[row].reserve(row + 1);
       for (int row = 1; row < numRows; pascals_triangle[row].push_back(1), ++row) {
-        
         for (int column = 1; column < row; ++column) {
           pascals_triangle[row].push_back(pascals_triangle[row - 1][column - 1] + pascals_triangle[row - 1][column]);
         }

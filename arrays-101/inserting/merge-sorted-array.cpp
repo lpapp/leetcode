@@ -30,7 +30,7 @@ int main()
 
   vector<int> M2{1};
   vector<int> N2{};
-  cout << "[1] 1 | [] | 0 => [1]: ";
+  cout << "[1] | 1 | [] | 0 => [1]: ";
   test(M2, 1, N2, 0);
 
   vector<int> M3{0};
