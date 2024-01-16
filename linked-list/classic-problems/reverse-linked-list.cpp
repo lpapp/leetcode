@@ -99,7 +99,7 @@ void test(ListNode* head)
   Solution s;
 
   cout << "[";
-  for (ListNode* h = s.reverseList(head); h; h = h->next) cout << h->val << ",";
+  for (ListNode* h = s.reverseList_iterative(head); h; h = h->next) cout << h->val << ",";
   cout << "]" << endl;
 }
 

@@ -34,6 +34,10 @@ class Solution {
 public:
   bool isPalindrome(ListNode* head) {
     ListNode* left_tail, *fast;
+    // 1 -> 2 (s) -> 2 (f) -> 1
+    // 1 -> 2 -> 3 (s) -> 2 -> 1 (f)
+    // 1 -> 2 -> 3 -> 4 (s) -> 3 -> 2 -> 1 (f)
+    // 1 -> 2 -> 3 (s) -> 3 -> 2 (f) -> 1
     for (left_tail = head, fast = head; fast->next and fast->next->next; left_tail = left_tail->next, fast = fast->next->next);
     for (ListNode* left = head, *right = reverseList(left_tail->next); right; left = left->next, right = right->next) if (left->val != right->val) return false;
     return true;
@@ -56,6 +60,13 @@ int main()
 
   ListNode* head3 = new ListNode(1);
   cout << "[1] => true: " << s.isPalindrome(head3) << endl;
+
+  ListNode* head4 = new ListNode(1);
+  head4->next = new ListNode(2);
+  head4->next->next = new ListNode(3);
+  head4->next->next->next = new ListNode(2);
+  head4->next->next->next->next = new ListNode(1);
+  cout << "[1,2,3,2,1] => true: " << s.isPalindrome(head4) << endl;
 
   return 0;
 }

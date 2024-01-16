@@ -42,7 +42,7 @@ public:
       if (!index) { new_node->next = head; if (head) head->prev = new_node; head = new_node; return; }
 
       Node* node = head;
-      for (int i = 1 ; i < index and node; ++i, node = node->next);
+      for (int i = 1; i < index and node; ++i, node = node->next);
       if (!node) return;
 
       new_node->next = node->next;

@@ -50,6 +50,13 @@ public:
      return s.substr(0, write);
    } */
 
+   // 1. Shrink multiple continuous spaces into one by using the two-pointer
+   // technique.
+   // 2. Reverse the part of the original string where the spaces were shrunk.
+   // This reverses the words in the string, but still maintains the original
+   // order of the characters in the words.
+   // 3. Reverse each string from left to right. This reverses the characters
+   // of each word.
    string reverseWords(string s) {
      int N = s.size(), read, write, space_start;
      for (read = 0, write = 0; read < N;) {
