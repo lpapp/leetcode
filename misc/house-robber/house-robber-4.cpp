@@ -31,11 +31,11 @@ int rob(vector<int>& nums) {
 
 int main()
 {
-    std::vector<int> i1{1, 2, 3, 1};
-    std::cout << rob(i1) << std::endl;
+  std::vector<int> i1{1, 2, 3, 1};
+  std::cout << rob(i1) << std::endl;
 
-    std::vector<int> i2{2, 7, 9, 3, 1};
-    std::cout << rob(i2) << std::endl;
+  std::vector<int> i2{2, 7, 9, 3, 1};
+  std::cout << rob(i2) << std::endl;
 
-    return 0;
+  return 0;
 }
