@@ -56,7 +56,7 @@ public:
 
     for (std::size_t row = 0; row < rows; ++row) {
       for (std::size_t column = 0; column < columns; ++column) {
-        if (board[row][column] == word.front() && dfs(board, word, row, column, 0))
+        if (dfs(board, word, row, column, 0))
           return true;
       }
     }
