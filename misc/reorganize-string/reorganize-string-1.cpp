@@ -7,8 +7,8 @@
 using namespace std;
 
 // Recursive
-// Time complexity: O(2 ^ N).
-// Space complexity: O(N ^ 2)
+// Time complexity: O(N * logN).
+// Space complexity: O(N)
 // N: string length
 
 string reorganizeString(const string& s) {
