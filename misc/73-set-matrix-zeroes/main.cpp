@@ -27,7 +27,7 @@ public:
 
         // Check for zeros in the rest of the matrix
         for (size_t row = 1; row < matrix.size(); ++row) {
-            for (size_t column = 1; column < matrix.size(); ++column) {
+            for (size_t column = 1; column < matrix[0].size(); ++column) {
                 if (!matrix[row][column]) {
                     matrix[row][0] = 0;
                     matrix[0][column] = 0;
