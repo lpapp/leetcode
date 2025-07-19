@@ -9,6 +9,10 @@ struct LinkedListNode
     LinkedListNode* next;
 };
 
+// N: the number of elements in the linked list.
+// Time complexity: O(N)
+// Space complexity: O(N)
+
 class Solution {
 public:
     void deleteDups(LinkedListNode* node) {
