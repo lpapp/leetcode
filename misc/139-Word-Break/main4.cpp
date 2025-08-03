@@ -11,7 +11,7 @@ using namespace std;
 //   M: longest word length in the dictionary. 
 // Space complexity: O(N)
 
-constexpr std::size_t ALPHABET_SIZE = 26;
+constexpr size_t ALPHABET_SIZE = 26;
  
 struct TrieNode {
     struct TrieNode* children[ALPHABET_SIZE];
@@ -19,17 +19,17 @@ struct TrieNode {
 
     TrieNode()
     {
-        for (std::size_t i = 0; i < ALPHABET_SIZE; ++i)
+        for (size_t i = 0; i < ALPHABET_SIZE; ++i)
             children[i] = nullptr;
     }
 
     ~TrieNode()
     {
-        for (std::size_t i = 0; i < ALPHABET_SIZE; ++i)
+        for (size_t i = 0; i < ALPHABET_SIZE; ++i)
             delete children[i];
     }
 
-    bool search(const std::string& s)
+    bool search(const string& s)
     {
         TrieNode* node = this;
         for (const char c : s) {
@@ -44,7 +44,7 @@ struct TrieNode {
     }
 
     // Add the word to the trie if not present, and mark it as leaf.
-    void insert(const std::string& s)
+    void insert(const string& s)
     {
         TrieNode* node = this;
         for (const char c : s) {
@@ -59,14 +59,14 @@ struct TrieNode {
 
     bool wordBreak(const string& s)
     {
-        const std::size_t ssize = s.size();
+        const size_t ssize = s.size();
     
         // Base case
         if (!ssize) return true;
     
-        for (std::size_t i = 1; i <= ssize; ++i) {
-            const std::string left = s.substr(0, i);
-            const std::string right = s.substr(i, ssize - i);
+        for (size_t i = 1; i <= ssize; ++i) {
+            const string left = s.substr(0, i);
+            const string right = s.substr(i, ssize - i);
             if (search(left) && wordBreak(right))
                 return true;
         }
@@ -75,17 +75,20 @@ struct TrieNode {
     }
 };
 
-bool wordBreak(const std::string& s, const vector<string>& wordDict)
-{
-    TrieNode* root = new TrieNode();
-    const std::size_t sWordDict = wordDict.size();
-    for (std::size_t i = 0; i < sWordDict; ++i)
-        root->insert(wordDict[i]);
-    return root->wordBreak(s);
-}
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        TrieNode* root = new TrieNode();
+        const size_t sWordDict = wordDict.size();
+        for (size_t i = 0; i < sWordDict; ++i) root->insert(wordDict[i]);
+        return root->wordBreak(s);
+    }
+};
 
-int main() {
-    const vector<string> wordDict = {
+int main()
+{
+    Solution solution;
+    vector<string> wordDict = {
         "and",
         "cream"
         "go", 
@@ -102,8 +105,23 @@ int main() {
     };
 
     for (const string& s: {"ilikesamsung", "iiiiiiii", "", "ilikelikeimangoiii", "samsungandmango", "samsungandmangok"}) {
-        cout << wordBreak(s, wordDict) << endl;
+        cout << solution.wordBreak(s, wordDict) << endl;
     }
+
+    string s2 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
+    vector<string> wordDict2 = {
+        "a",
+        "aa",
+        "aaa",
+        "aaaa",
+        "aaaaa",
+        "aaaaaa",
+        "aaaaaaa",
+        "aaaaaaaa",
+        "aaaaaaaaa",
+        "aaaaaaaaaa"
+    };
+    cout << solution.wordBreak(s2, wordDict2) << endl;
 
     return 0;
 }
