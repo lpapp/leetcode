@@ -12,18 +12,6 @@ using namespace std;
 // N: number of nodes in the tree
 // H: The height of the tree
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -77,14 +65,14 @@ int main()
     struct TreeNode* root1 = new TreeNode(1);
     root1->left = new TreeNode(2);
     root1->right = new TreeNode(3);
-    std::cout << solution->maxPathSum(root1) << std::endl;
+    cout << solution->maxPathSum(root1) << endl;
 
     struct TreeNode* root2 = new TreeNode(-10);
     root2->left = new TreeNode(9);
     root2->right = new TreeNode(20);
     root2->right->left = new TreeNode(15);
     root2->right->right = new TreeNode(7);
-    std::cout << solution->maxPathSum(root2) << std::endl;
+    cout << solution->maxPathSum(root2) << endl;
 
     return 0;
 }
