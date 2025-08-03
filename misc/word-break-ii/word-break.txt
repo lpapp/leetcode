@@ -1,0 +1,6 @@
+https://www.geeksforgeeks.org/dsa/word-break-problem-dp-32/
+https://www.geeksforgeeks.org/dsa/word-break-problem-dp-32-set-2/
+https://www.geeksforgeeks.org/dsa/word-break-problem-trie-solution/
+
+https://algo.monster/liteproblems/word-break-ii
+https://algo.monster/liteproblems/140
