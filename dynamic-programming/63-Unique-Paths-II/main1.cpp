@@ -10,8 +10,8 @@ using namespace std;
 class Solution {
 public:
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
-        size_t rows = obstacleGrid.size();
-        size_t columns = obstacleGrid[0].size();
+        const size_t rows = obstacleGrid.size();
+        const size_t columns = obstacleGrid[0].size();
         vector<vector<int>> dp(rows, vector<int>(columns, 0));
         for (size_t row = 0; row < rows && obstacleGrid[row][0] == 0; ++row) dp[row][0] = 1;
         for (size_t column = 0; column < columns && obstacleGrid[0][column] == 0; ++column) dp[0][column] = 1;
