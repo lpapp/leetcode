@@ -35,7 +35,6 @@ void printSolution(vector<string> input)
     cout << endl;
 }
 
-
 int main()
 {
 	Solution solution;
