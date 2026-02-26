@@ -14,8 +14,8 @@ public:
             if (++charFrequencyDiff[charIndex] == 1) ++uniqueCharsToMatch;
         }
 
-        size_t patternLength = s1.size();
-        size_t textLength = s2.size();
+        const size_t patternLength = s1.size();
+        const size_t textLength = s2.size();
 
         for (size_t windowEnd = 0; windowEnd < textLength; ++windowEnd) {
             int currentCharIndex = s2[windowEnd] - 'a';
