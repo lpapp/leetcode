@@ -1,4 +1,7 @@
-#include <algorithm> #include <array> #include <iostream> #include <set>
+#include <algorithm>
+#include <array>
+#include <iostream>
+#include <set>
 #include <string>
 
 using namespace std;
