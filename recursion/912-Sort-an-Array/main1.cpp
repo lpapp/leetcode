@@ -17,7 +17,6 @@ class Solution {
         sort(left, j, nums);
         sort(j + 1, right, nums);
     };
-      
 public:
     vector<int> sortArray(vector<int>& nums) {
         sort(0, nums.size() - 1, nums);
@@ -33,10 +32,10 @@ void printVector(vector<int> input)
 
 int main()
 {
-	Solution s;
-	vector<int> input1 = {5, 2, 3, 1};
+    Solution s;
+    vector<int> input1 = {5, 2, 3, 1};
     printVector(s.sortArray(input1));
-	vector<int> input2 = {5, 1, 1, 2, 0, 0};
+    vector<int> input2 = {5, 1, 1, 2, 0, 0};
     printVector(s.sortArray(input2));
-	return 0;
+    return 0;
 }
