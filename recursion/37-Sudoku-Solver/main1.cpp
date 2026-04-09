@@ -1,5 +1,4 @@
 #include <array>
-#include <functional>
 #include <iostream>
 #include <utility>
 #include <vector>
