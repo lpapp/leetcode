@@ -11,19 +11,11 @@ public:
        for (size_t first = 0, last = matrixSize - 1; first < matrixSize/2; ++first, --last) {
            for (size_t i = first; i < last; ++i) {
                const int offset =  i - first;
-               const int top = matrix[first][i]; // save the top
-
-               // left -> top
+               const int top = matrix[first][i];
                matrix[first][i] = matrix[last - offset][first];
-
-               // bottom -> left
                matrix[last - offset][first] = matrix[last][last - offset];
-
-               // right -> bottom
                matrix[last][last - offset] = matrix[i][last];
-
-               // top -> right
-               matrix[i][last] = top; // right <- saved top
+               matrix[i][last] = top;
            }
        }
     }
