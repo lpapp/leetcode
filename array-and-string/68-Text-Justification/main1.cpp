@@ -24,7 +24,6 @@ public:
             justifiedLine += lineWords.back();
             res.push_back(justifiedLine);
         }
-      
         return res;
     }
 };
