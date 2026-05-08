@@ -25,6 +25,7 @@ public:
                     while (!(v % p)) v /= p;
                 }
             }
+            if (v > 1) bucket[v].push_back(i);
         }
         vector<int> dist(n, -1);
         queue<int> q({0});
@@ -66,5 +67,7 @@ int main()
     assert(s.minJumps(nums2) == 2);
     vector<int> nums3 = {4, 6, 5, 8};
     assert(s.minJumps(nums3) == 3);
+    vector<int> nums4 = {7, 5, 7};
+    assert(s.minJumps(nums4) == 1);
     return 0;
 }
