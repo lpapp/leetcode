@@ -22,13 +22,13 @@ public:
 int main()
 {
 	Solution s;
-    vector<vector<int>> intervals1 = { {1, 3}, {2, 6}, {8, 10}, {15, 18} };
+    vector<vector<int>> intervals1 = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
     vector<vector<int>> res1 = {{1, 6}, {8, 10}, {15, 18}};
     assert(s.merge(intervals1) == res1);
-    vector<vector<int>> intervals2 = { {1, 4}, {4, 5}};
+    vector<vector<int>> intervals2 = {{1, 4}, {4, 5}};
     vector<vector<int>> res2 = {{1, 5}};
     assert(s.merge(intervals2) == res2);
-    vector<vector<int>> intervals3 = { {4, 7}, {1, 4}};
+    vector<vector<int>> intervals3 = {{4, 7}, {1, 4}};
     vector<vector<int>> res3 = {{1, 7}};
     assert(s.merge(intervals3) == res3);
 	return 0;
