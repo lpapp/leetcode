@@ -12,7 +12,7 @@ public:
         int res = 0;
         for (int i = 0, sign = 1, n = s.size(); i < n; ++i) {
             const char c = s[i];
-            if (isdigit(c)) { int num; for (num = 0; i < n && isdigit(s[i]); ++i) num = num * 10 + (c - '0'); --i; res += sign * num; }
+            if (isdigit(c)) { long num; for (num = 0; i < n && isdigit(s[i]); ++i) num = num * 10 + (s[i] - '0'); --i; res += sign * num; }
             else if (c == '+') sign = 1;
             else if (c == '-') sign = -1;
             else if (c == '(') { stk.push(res); res = 0; stk.push(sign); sign = 1; }
@@ -28,5 +28,6 @@ int main()
 	assert(s.calculate("1 + 1") == 2);
 	assert(s.calculate(" 2-1 + 2 ") == 3);
 	assert(s.calculate("(1+(4+5+2)-3)+(6+8)") == 23);
+	assert(s.calculate("-2147483648") == -2147483648);
 	return 0;
 }
