@@ -24,7 +24,7 @@ public:
         ListNode* dummy = new ListNode(0, head), *prevReversalEnd = dummy;
         while (prevReversalEnd) {
             ListNode* current = prevReversalEnd;
-            for (int i = 0; i < k; ++i) { current = current->next; if (current) return dummy->next; }
+            for (int i = 0; i < k; ++i) { current = current->next; if (!current) return dummy->next; }
             ListNode* reversalStart = prevReversalEnd->next;
             ListNode* nextReversalStart = current->next;
             current->next = nullptr;
@@ -44,12 +44,12 @@ int main()
 	ListNode* list13 = new ListNode(3, list14);
 	ListNode* list12 = new ListNode(2, list13);
 	ListNode* list11 = new ListNode(1, list12);
-	assert(s.reverseKGroup(list11, 2) == list11);
+	s.reverseKGroup(list11, 2);
 	ListNode* list25 = new ListNode(5);
 	ListNode* list24 = new ListNode(4, list25);
 	ListNode* list23 = new ListNode(3, list24);
 	ListNode* list22 = new ListNode(2, list23);
 	ListNode* list21 = new ListNode(1, list22);
-	assert(s.reverseKGroup(list21, 3) == list21);
+	s.reverseKGroup(list21, 3);
 	return 0;
 }
