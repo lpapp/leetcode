@@ -11,7 +11,7 @@ class MedianFinder {
 public:
     MedianFinder() = default;
     void addNum(int num) { maxHeap.push(num); minHeap.push(maxHeap.top()); maxHeap.pop(); if (minHeap.size() > maxHeap.size() + 1) { maxHeap.push(minHeap.top()); minHeap.pop(); } }
-    double findMedian() { return minHeap.size() == maxHeap.size() ? (minHeap.top() + maxHeap.top()) / 2.0 : minHeap.top();   }
+    double findMedian() { return minHeap.size() == maxHeap.size() ? (minHeap.top() + maxHeap.top()) / 2.0 : minHeap.top(); }
 };
 
 int main()

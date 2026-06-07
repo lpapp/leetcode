@@ -3,7 +3,7 @@
 class Solution {
 public:
     int trailingZeroes(int n) {
-         int res;
+        int res;
         for (res = 0; n > 0; n /= 5, res += n);
         return res;
     }
