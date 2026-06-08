@@ -6,11 +6,15 @@ using namespace std;
 class Solution {
 public:
     vector<int> pivotArray(vector<int>& nums, int pivot) {
-        vector<int> result;
-        for (const int num : nums) if (num < pivot) result.push_back(num);
-        for (const int num : nums) if (num == pivot) result.push_back(num);
-        for (const int num : nums) if (num > pivot) result.push_back(num);
-        return result;      
+    	const int n = nums.size();
+    	vector<int> res(n);
+    	int lo = 0, hi = n - 1;
+    	for (int i = 0, j = n - 1; i < n; ++i, --j) {
+    	    if (nums[i] < pivot) res[lo++] = nums[i];
+    	    if (nums[j] > pivot) res[hi--] = nums[j];
+    	}
+    	while (lo <= hi) res[lo++] = pivot;
+    	return res;
     }
 };
 
