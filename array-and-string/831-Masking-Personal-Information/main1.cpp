@@ -11,8 +11,7 @@ public:
     	if (at != string::npos) { string res; res.reserve(7 + s.size() - at); res += tolower(s[0]); res += "*****"; res.append(s, at - 1); std::transform(res.begin() + 6, res.end(), res.begin() + 6, ::tolower); return res; }
     	int cnt = 0;
     	char tail[4];
-    	int pos = 3;
-    	for (int i = s.size() - 1; i >= 0; --i) { if (isdigit(s[i])) { if (pos >= 0) tail[pos--] = s[i]; ++cnt; } }
+    	for (int i = s.size() - 1, pos = 3; i >= 0; --i) { if (isdigit(s[i])) { if (pos >= 0) tail[pos--] = s[i]; ++cnt; } }
     	string res;
     	int cc = cnt - 10;
     	if (cc > 0) { res.reserve(cc + 14); res += '+'; res.append(cc, '*'); res += '-'; }
