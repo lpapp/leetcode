@@ -9,13 +9,13 @@ using namespace std;
 class Solution {
 public:
     vector<int> beautifulArray(int n) {
-          vector<int> res = {1}, tmp; res.reserve(n); tmp.reserve(n);
-          for (; static_cast<int>(res.size()) < n; swap(res, tmp)) {
-              tmp.clear();
-              for (int x : res) if (x * 2 - 1 <= n) tmp.push_back(x * 2 - 1);
-              for (int x : res) if (x * 2 <= n) tmp.push_back(x * 2);
-          }
-          return res;
+        vector<int> res = {1}, tmp; res.reserve(n); tmp.reserve(n);
+        for (; static_cast<int>(res.size()) < n; swap(res, tmp)) {
+            tmp.clear();
+            for (int x : res) if (x * 2 - 1 <= n) tmp.push_back(x * 2 - 1);
+            for (int x : res) if (x * 2 <= n) tmp.push_back(x * 2);
+        }
+        return res;
     }
 };
 
