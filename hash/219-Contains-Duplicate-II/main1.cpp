@@ -1,4 +1,4 @@
-#include <iostream>
+#include <cassert>
 #include <unordered_set>
 #include <vector>
 
@@ -7,11 +7,10 @@ using namespace std;
 class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        unordered_set<int> hash;
-        for (size_t left = 0, right = 0; right < nums.size(); ++right) {
-            if (static_cast<int>(right - left) > k) hash.erase(nums[left++]);
-            if (hash.contains(nums[right])) return true;
-            hash.insert(nums[right]);
+        unordered_set<int> s;
+        for (int l = 0, r = 0, n = nums.size(); r < n; ++r) {
+            if (r - l > k) s.erase(nums[l++]);
+            if (!s.insert(nums[r]).second) return true;
         }
         return false;
     }
@@ -21,10 +20,10 @@ int main()
 {
 	Solution s;
     vector<int> nums1 = {1, 2, 3, 1};
-    cout << s.containsNearbyDuplicate(nums1, 3) << endl;
+    assert(s.containsNearbyDuplicate(nums1, 3));
     vector<int> nums2 = {1, 0, 1, 1};
-    cout << s.containsNearbyDuplicate(nums2, 1) << endl;
+    assert(s.containsNearbyDuplicate(nums2, 1));
     vector<int> nums3 = {1, 2, 3, 1, 2, 3};
-    cout << s.containsNearbyDuplicate(nums3, 2) << endl;
+    assert(!s.containsNearbyDuplicate(nums3, 2));
 	return 0;
 }
