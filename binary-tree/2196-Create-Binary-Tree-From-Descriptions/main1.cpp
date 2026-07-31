@@ -35,13 +35,13 @@ public:
 
 int main()
 {
-	Solution s;
+    Solution s;
     vector<vector<int>> descriptions1 = {
-            {20, 15, 1},
-            {20, 17, 0},
-            {50, 20, 1},
-            {50, 80, 0},
-            {80, 19, 1}
+        {20, 15, 1},
+        {20, 17, 0},
+        {50, 20, 1},
+        {50, 80, 0},
+        {80, 19, 1}
     };
     TreeNode* tree = s.createBinaryTree(descriptions1);
     assert(tree->val == 50);
@@ -51,14 +51,14 @@ int main()
     assert(tree->left->right->val == 17);
     assert(tree->right->left->val == 19);
     vector<vector<int>> descriptions2 = {
-            {1, 2, 1},
-            {2, 3, 0},
-            {3, 4, 1}
+        {1, 2, 1},
+        {2, 3, 0},
+        {3, 4, 1}
     };
     tree = s.createBinaryTree(descriptions2);
     assert(tree->val == 1);
     assert(tree->left->val == 2);
     assert(tree->left->right->val == 3);
     assert(tree->left->right->left->val == 4);
-	return 0;
+    return 0;
 }
