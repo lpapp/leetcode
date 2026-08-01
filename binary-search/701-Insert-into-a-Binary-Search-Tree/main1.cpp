@@ -31,20 +31,20 @@ void printTree(TreeNode* root) {
 int main()
 {
     Solution s;
-	TreeNode leftleft1(1);
-	TreeNode leftright1(3);
-	TreeNode left1(2, &leftleft1, &leftright1);
+    TreeNode leftleft1(1);
+    TreeNode leftright1(3);
+    TreeNode left1(2, &leftleft1, &leftright1);
     TreeNode right1(7);
     TreeNode root1(4, &left1, &right1);
     printTree(s.insertIntoBST(&root1, 5));
 
-	TreeNode leftleft2(10);
-	TreeNode leftright2(30);
-	TreeNode left2(20, &leftleft2, &leftright2);
-	TreeNode rightleft2(50);
-	TreeNode rightright2(70);
+    TreeNode leftleft2(10);
+    TreeNode leftright2(30);
+    TreeNode left2(20, &leftleft2, &leftright2);
+    TreeNode rightleft2(50);
+    TreeNode rightright2(70);
     TreeNode right2(60, &rightleft2, &rightright2);
     TreeNode root2(40, &left2, &right2);
     printTree(s.insertIntoBST(&root2, 25));
-	return 0;
+    return 0;
 }

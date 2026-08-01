@@ -37,14 +37,14 @@ void printTree(TreeNode* root) {
 int main()
 {
     Solution s;
-	TreeNode leftleft1(2);
-	TreeNode leftright1(4);
-	TreeNode left1(3, &leftleft1, &leftright1);
-	TreeNode rightright1(7);
+    TreeNode leftleft1(2);
+    TreeNode leftright1(4);
+    TreeNode left1(3, &leftleft1, &leftright1);
+    TreeNode rightright1(7);
     TreeNode right1(6, nullptr, &rightright1);
     TreeNode root1(5, &left1, &right1);
     printTree(s.deleteNode(&root1, 3));
     printTree(s.deleteNode(&root1, 0));
     printTree(s.deleteNode(nullptr, 0));
-	return 0;
+    return 0;
 }
