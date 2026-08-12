@@ -9,12 +9,13 @@ class Solution {
 public:
     int maxSubarrayLength(vector<int>& nums, int k) {
         unordered_map<int, int> freq;
-        int l = 0, n = nums.size();
-        for (int r = 0; r < n; ++r) {
+        int res = 0;
+        for (int r = 0, l = 0, n = nums.size(); r < n; ++r) {
             ++freq[nums[r]];
-            if (freq[nums[r]] > k) --freq[nums[l++]];
+            while (freq[nums[r]] > k) --freq[nums[l++]];
+            res = max(res, r - l + 1);
         }
-        return n - l;
+        return res;
     }
 };
 
@@ -27,5 +28,7 @@ int main()
     assert(s.maxSubarrayLength(nums2, 1) == 2);
     vector<int> nums3 = {5, 5, 5, 5, 5, 5, 5};
     assert(s.maxSubarrayLength(nums3, 4) == 4);
+    vector<int> nums4 = {1, 4, 4, 3};
+    assert(s.maxSubarrayLength(nums4, 1) == 2);
     return 0;
 }
