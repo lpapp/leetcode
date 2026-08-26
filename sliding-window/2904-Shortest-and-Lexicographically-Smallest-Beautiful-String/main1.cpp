@@ -4,19 +4,24 @@
 using namespace std;
 
 class Solution {
+    bool smaller(const string& s, int a, int b, int width) {
+        if (b == -1) return true;
+        for (int i = 0; i < width; ++i) if (s[a + i] != s[b + i]) return s[a + i] < s[b + i];
+        return false;
+    }
 public:
     string shortestBeautifulSubstring(string s, int k) {
-        string res;
-        for (int l = 0, r = 0, ones = 0, n = s.size(), len = INT_MAX; r < n; ++r) {
+        const int n = s.size();
+        int bestStart = -1, len = INT_MAX;
+        for (int l = 0, r = 0, ones = 0; r < n; ++r) {
             ones += s[r] == '1';
             while (ones > k || (l < r && s[l] == '0')) ones -= s[l++] == '1';
             if (ones == k) {
                 const int width = r - l + 1;
-                string cand = s.substr(l, width);
-                if (width < len || (width == len && cand < res)) { len = width; res = std::move(cand); }
+                if (width < len || (width == len && smaller(s, l, bestStart, width))) { len = width; bestStart = l; }
             }
         }
-        return res;      
+        return bestStart == -1 ? "" : s.substr(bestStart, len);
     }
 };
 
