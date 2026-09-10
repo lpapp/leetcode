@@ -1,25 +1,34 @@
 #include <cassert>
+#include <list>
 #include <unordered_map>
 
 using namespace std;
 
 class LRUCache {
-    struct Node {
-        int key, value;
-        Node* prev, *next;
-        Node(int k, int v) : key(k), value(v), prev(nullptr), next(nullptr) {}
-    };
-    int size, maxCapacity;
-    Node* dummyHead, *dummyTail;
-    unordered_map<int, Node*> hash;
-    void remove(Node* node) { node->prev->next = node->next; node->next->prev = node->prev; }
-    void prepend(Node* node) { node->next = dummyHead->next; node->prev = dummyHead; dummyHead->next->prev = node; dummyHead->next = node; }
+    const int capacity;
+    list<pair<int, int>> order;
+    unordered_map<int, list<pair<int, int>>::iterator> cache;
 public:
-    LRUCache(int capacity) : size(0), maxCapacity(capacity), dummyHead(new Node(0, 0)), dummyTail(new Node(0, 0)) { dummyHead->next = dummyTail; dummyTail->prev = dummyHead; }
-    int get(int key) { if (!hash.contains(key)) { return -1; } Node* node = hash[key]; remove(node); prepend(node); return node->value; }
+    LRUCache(int capacity) : capacity(capacity) {}
+    int get(int key) {
+        const auto it = cache.find(key);
+        if (it == cache.end()) return -1;
+        order.splice(order.begin(), order, it->second);
+        return it->second->second;
+    }
     void put(int key, int value) {
-        if (hash.contains(key)) { Node* node = hash[key]; remove(node); node->value = value; prepend(node); } 
-        else { Node* newNode = new Node(key, value); hash[key] = newNode; prepend(newNode); ++size; if (size > maxCapacity) { Node* lruNode = dummyTail->prev; hash.erase(lruNode->key); remove(lruNode); delete lruNode; --size; } }
+        const auto it = cache.find(key);
+        if (it != cache.end()) {
+            it->second->second = value;
+            order.splice(order.begin(), order, it->second);
+            return;
+        }
+        if (static_cast<int>(cache.size()) == capacity) {
+            cache.erase(order.back().first);
+            order.pop_back();
+        }
+        order.emplace_front(key, value);
+        cache[key] = order.begin();
     }
 };
 
