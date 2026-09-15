@@ -1,29 +1,45 @@
-#include <iostream>
-#include <numeric>
+#include <cassert>
+#include <random>
 #include <unordered_map>
 #include <vector>
 
 using namespace std;
 
 class RandomizedSet {
-    unordered_map<int, size_t> hash;
     vector<int> vals;
+    unordered_map<int, int> idx;
+    mt19937 rng{random_device{}()};
 public:
-    RandomizedSet() = default;
-    bool insert(int val) { if (hash.contains(val)) return false; hash[val] = vals.size(); vals.push_back(val); return true; }
-    bool remove(int val) { if (!hash.contains(val)) return false; const size_t index = hash[val]; const int last = vals.back(); vals[index] = last, vals.pop_back(); hash[last] = index, hash.erase(val); return true;   }
-    int getRandom() { return vals[rand() % vals.size()]; }
+    RandomizedSet() { vals.reserve(200000); idx.reserve(200000); }
+    bool insert(int val) {
+        auto [it, inserted] = idx.try_emplace(val, vals.size());
+        if (!inserted) return false;
+        vals.push_back(val);
+        return true;
+    }
+    bool remove(int val) {
+        auto it = idx.find(val);
+        if (it == idx.end()) return false;
+        const int i = it->second, last = vals.back();
+        vals[i] = last;
+        idx[last] = i;
+        vals.pop_back();
+        idx.erase(it);
+        return true;
+    }
+    int getRandom() { return vals[uniform_int_distribution<int>(0, vals.size() - 1)(rng)]; }
 };
 
 int main()
 {
-    RandomizedSet* randomizedSet = new RandomizedSet();
-    cout << randomizedSet->insert(1) << endl;
-    cout << randomizedSet->remove(2) << endl;
-    cout << randomizedSet->insert(2) << endl;
-    cout << randomizedSet->getRandom() << endl;
-    cout << randomizedSet->remove(1) << endl;
-    cout << randomizedSet->insert(2) << endl;
-    cout << randomizedSet->getRandom() << endl;
-	return 0;
+    RandomizedSet randomizedSet;
+    assert(randomizedSet.insert(1));
+    assert(!randomizedSet.remove(2));
+    assert(randomizedSet.insert(2));
+    int res1 = randomizedSet.getRandom();
+    assert(res1 == 1 || res1 == 2);
+    assert(randomizedSet.remove(1));
+    assert(!randomizedSet.insert(2));
+    assert(randomizedSet.getRandom() == 2);
+    return 0;
 }
