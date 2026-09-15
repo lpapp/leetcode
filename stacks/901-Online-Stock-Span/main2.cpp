@@ -1,16 +1,16 @@
 #include <cassert>
-#include <vector>
+#include <stack>
 
 using namespace std;
 
 class StockSpanner {
-    vector<pair<int, int>> s;
+    stack<pair<int, int>> s;
 public:
     StockSpanner() = default;
     int next(int price) {
         int span = 1;
-        for (; !s.empty() && s.back().first <= price; span += s.back().second, s.pop_back());
-        s.emplace_back(price, span);
+        for (; !s.empty() && s.top().first <= price; span += s.top().second, s.pop());
+        s.emplace(price, span);
         return span;
     }
 };
