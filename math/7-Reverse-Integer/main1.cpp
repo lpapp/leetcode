@@ -1,4 +1,4 @@
-#include <iostream>
+#include <cassert>
 #include <limits>
 
 using namespace std;
@@ -14,9 +14,9 @@ public:
 
 int main()
 {
-	Solution solution;
-	cout << solution.reverse(123) << endl;
-	cout << solution.reverse(-123) << endl;
-	cout << solution.reverse(120) << endl;
-	return 0;
+    Solution solution;
+    assert(solution.reverse(123) == 321);
+    assert(solution.reverse(-123) == -321);
+    assert(solution.reverse(120) == 21);
+    return 0;
 }
