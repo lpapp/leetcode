@@ -1,4 +1,4 @@
-#include <iostream>
+#include <cassert>
 #include <string>
 
 using namespace std;
@@ -22,10 +22,10 @@ public:
 int main()
 {
 	Solution s;
-	cout << s.isValid("()") << endl;
-    cout << s.isValid("()[]{}") << endl;
-    cout << s.isValid("(]") << endl;
-    cout << s.isValid("([])") << endl;
-    cout << s.isValid("([)]") << endl;
+	assert(s.isValid("()"));
+    assert(s.isValid("()[]{}"));
+    assert(!s.isValid("(]"));
+    assert(s.isValid("([])"));
+    assert(!s.isValid("([)]"));
 	return 0;
 }

@@ -1,44 +1,38 @@
-#include <iostream>
+#include <cassert>
+#include <string>
 #include <vector>
 
 using namespace std;
 
 class Solution {
     void addParen(vector<string>& result, int leftRemaining, int rightRemaining, string& str) {
-        if (leftRemaining < 0 || rightRemaining < leftRemaining) return; // invalid state
-
-        // Out of left and right parentheses
-        if (!leftRemaining && !rightRemaining) {
-            result.push_back(str);
-            return;
+        if (!leftRemaining && !rightRemaining) { result.push_back(str); return; }
+        if (leftRemaining > 0) {
+            str.push_back('(');
+            addParen(result, leftRemaining - 1, rightRemaining, str);
+            str.pop_back();
         }
-
-        str.push_back('('); // Add left and recurse
-        addParen(result, leftRemaining - 1, rightRemaining, str);
-        str.pop_back();
-        str.push_back(')'); // Add right and recurse
-        addParen(result, leftRemaining, rightRemaining - 1, str);
-        str.pop_back();
+        if (rightRemaining > leftRemaining) {
+            str.push_back(')');
+            addParen(result, leftRemaining, rightRemaining - 1, str);
+            str.pop_back();
+        }
     }
 public:
     vector<string> generateParenthesis(int n) {
         string str; str.reserve(2 * n);
-        vector<string> result;
+        vector<string> result; result.reserve(1430);
         addParen(result, n, n, str);
         return result;
     }
 };
 
-void printSolution(vector<string> input)
-{
-    for (const string& item : input) cout << item << ", ";
-    cout << endl;
-}
-
 int main()
 {
-	Solution solution;
-	printSolution(solution.generateParenthesis(3));
-	printSolution(solution.generateParenthesis(1));
-	return 0;
+    Solution solution;
+    vector<string> res1 = {"((()))", "(()())", "(())()", "()(())", "()()()"};
+    assert(solution.generateParenthesis(3) == res1);
+    vector<string> res2 = {"()"};
+    assert(solution.generateParenthesis(1) == res2);
+    return 0;
 }
