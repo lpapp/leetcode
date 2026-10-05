@@ -6,12 +6,13 @@ using namespace std;
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        int ones = 0, twos = 0;
-        for (const int num : nums) {
-            ones = (ones ^ num) & ~twos;
-            twos = (twos ^ num) & ~ones;
+        int res = 0;
+        for (int i = 0; i < 32; ++i) {
+            int count = 0;
+            for (int num : nums) count += ((num >> i) & 1);
+            res |= ((count % 3) << i);
         }
-        return ones;
+        return res;       
     }
 };
 
