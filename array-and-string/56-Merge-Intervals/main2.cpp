@@ -7,15 +7,14 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        constexpr int maxValue = 10001;
-        vector<int> delta(maxValue + 2, 0);
-        for (const vector<int>& interval : intervals) { ++delta[interval[0]]; --delta[interval[1] + 1]; }
+        ranges::sort(intervals);
+        int start = intervals[0][0], end = intervals[0][1];
         vector<vector<int>> res;
-        for (int balance = 0, start = -1, value = 0; value <= maxValue; ++value) {
-            balance += delta[value];
-            if (balance > 0 && start == -1) start = value;
-            else if (!balance && start != -1) { res.push_back({start, value - 1}); start = -1; }
+        for (const vector<int>& interval : intervals) {
+            if (end < interval[0]) { res.push_back({start, end}); start = interval[0]; end = interval[1]; }
+			else end = max(end, interval[1]);
         }
+        res.push_back({start, end});
         return res;
     }
 };
