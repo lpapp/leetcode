@@ -8,13 +8,13 @@ class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         constexpr int maxValue = 10001;
-        vector<int> delta(maxValue + 2, 0);
-        for (const vector<int>& interval : intervals) { ++delta[interval[0]]; --delta[interval[1] + 1]; }
+        vector<int> delta(2 * maxValue + 3, 0);
+        for (const vector<int>& interval : intervals) { ++delta[2 * interval[0]]; --delta[2 * interval[1] + 1]; }
         vector<vector<int>> res;
-        for (int balance = 0, start = -1, value = 0; value <= maxValue; ++value) {
+        for (int balance = 0, start = -1, value = 0; value <= 2 * maxValue + 1; ++value) {
             balance += delta[value];
             if (balance > 0 && start == -1) start = value;
-            else if (!balance && start != -1) { res.push_back({start, value - 1}); start = -1; }
+            else if (!balance && start != -1) { res.push_back({start / 2, (value - 1) / 2}); start = -1; }
         }
         return res;
     }
@@ -32,5 +32,8 @@ int main()
     vector<vector<int>> intervals3 = {{4, 7}, {1, 4}};
     vector<vector<int>> res3 = {{1, 7}};
     assert(s.merge(intervals3) == res3);
+    vector<vector<int>> intervals4 = {{1, 4}, {5, 6}};
+    vector<vector<int>> res4 = {{1, 4}, {5, 6}};
+    assert(s.merge(intervals4) == res4);
     return 0;
 }
