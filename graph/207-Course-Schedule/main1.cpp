@@ -5,7 +5,6 @@
 using namespace std;
 
 class Solution {
-
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         vector<vector<int>> adjacencyList(numCourses);
