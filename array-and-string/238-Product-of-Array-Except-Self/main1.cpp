@@ -1,4 +1,4 @@
-#include <iostream>
+#include <cassert>
 #include <vector>
 
 using namespace std;
@@ -14,18 +14,14 @@ public:
     }
 };
 
-void printVector(vector<int> input)
-{
-    for (const int item : input) cout << item << ", ";
-    cout << endl;
-}
-
 int main()
 {
 	Solution s;
     vector<int> nums1 = {1, 2, 3, 4};
-    printVector(s.productExceptSelf(nums1));
+    vector<int> res1 = {24, 12, 8, 6};
+    assert(s.productExceptSelf(nums1) == res1);
     vector<int> nums2 = {-1, 1, 0, -3, 3};
-    printVector(s.productExceptSelf(nums2));
+    vector<int> res2 = {0, 0, 9, 0, 0};
+    assert(s.productExceptSelf(nums2) == res2);
 	return 0;
 }
