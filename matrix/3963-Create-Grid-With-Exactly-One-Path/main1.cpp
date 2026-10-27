@@ -9,10 +9,7 @@ using namespace std;
 class Solution {
 public:
     vector<string> createGrid(int m, int n) {
-        vector<string> res; res.reserve(m);
-        for (int i = 0; i < m - 1; ++i) { res.emplace_back(n, '#'); res.back()[0] = '.'; }
-        res.emplace_back(n, '.');
-        return res;
+        vector<string> res(m, string(n - 1, '#') + '.'); res[0] = string(n, '.'); return res;
     }
 };
 
