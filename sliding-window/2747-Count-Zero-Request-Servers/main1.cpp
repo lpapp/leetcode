@@ -7,19 +7,18 @@ using namespace std;
 class Solution {
 public:
     vector<int> countServers(int n, vector<vector<int>>& logs, int x, vector<int>& queries) {
-        const int maxTime = ranges::max(queries);
-        vector<int> start(maxTime + 2), server(logs.size()), count(n + 1), zero(maxTime + 
-1), res; res.reserve(queries.size());
-        for (const vector<int>& log : logs) if (log[1] <= maxTime) ++start[log[1] + 1];
-        partial_sum(start.cbegin(), start.cend(), start.begin());
-        for (const vector<int>& log : logs) if (log[1] <= maxTime) server[start[log[1]]++]
- = log[0];
-        for (int time = 1, active = 0, added = 0, removed = 0; time <= maxTime; ++time) {
-            for (; added < start[time]; ++added) if (!count[server[added]]++) ++active;
-            if (time > x) for (; removed < start[time - x - 1]; ++removed) if (!--count[server[removed]]) --active;
-            zero[time] = n - active;
+        const int logCount = logs.size(), queryCount = queries.size();
+        vector<pair<int, int>> events, sortedQueries; events.reserve(logCount); sortedQueries.reserve(queryCount);
+        for (const vector<int>& log : logs) events.emplace_back(log[1], log[0]);
+        for (int i = 0; i < queryCount; ++i) sortedQueries.emplace_back(queries[i], i);
+        ranges::sort(events);
+        ranges::sort(sortedQueries);
+        vector<int> count(n + 1), res(queryCount);
+        for (int added = 0, removed = 0, active = 0; const auto& [query, index] : sortedQueries) {
+            for (; added < logCount && events[added].first <= query; ++added) if (!count[events[added].second]++) ++active;
+            for (; removed < added && events[removed].first < query - x; ++removed) if (!--count[events[removed].second]) --active;
+            res[index] = n - active;
         }
-        for (const int query : queries) res.push_back(zero[query]);
         return res;
     }
 };
@@ -35,5 +34,9 @@ int main()
     vector<int> queries2 = {10, 11};
     vector<int> res2 = {0, 1};
     assert(s.countServers(3, logs2, 2, queries2) == res2);
+    vector<vector<int>> logs3 = {{1, 505273}};
+    vector<int> queries3 = {847895};
+    vector<int> res3 = {0, 1};
+    assert(s.countServers(1, logs3, 30316, queries3) == res3);
     return 0;
 }
